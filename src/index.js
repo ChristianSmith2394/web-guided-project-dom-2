@@ -3,38 +3,53 @@ console.log('project is up')
 // 👉 TASK 1- Select the following elements from the DOM:
 
 // A- BUTTONS
-const launchButton = null
-const confirmButton = null
-const cancelButton = null
+const launchButton = document.querySelector('#launchButton')
+const confirmButton = document.querySelector('#confirmButton')
+const cancelButton = document.querySelector('#cancelButton')
 
 // B- MESSAGES
-const successMessage = null
-const failureMessage = null
+const successMessage = document.querySelector('h1.success')
+const failureMessage = document.querySelector('h1.failure')
 
 // C- MODAL
-const modal = null
+const modal = document.querySelector('.modal')
 
 
 // 👉 TASK 2- Demo handling click events on button#launchButton, using:
 //  A- HTML inside index.html
 //  B- The DOM's element.onclick attribute
+launchButton.onClick = function(event){
+    console.log('What happened to the other guy?')
+}
 //  C- element.addEventListener('click', callback)
-
+launchButton.addEventListener ('click', function(event){
+    console.log(event.target.nodeName)
+})
 
 // 👉 TASK 3- Create a function that launches!
 // It should open the confirmation modal.
 // Add it as an event listener for click events on the launch button.
-
-
+function launch(event) {
+    modal.classList.remove('off')
+}
+launchButton.addEventListener('click', launch)
 // 👉 TASK 4- Create a function to confirm the launch.
 // It should close the modal and display a success report.
 // Add it as a listener for clicks on the confirmation button.
-
-
+function confirm(event){
+    successMessage.classList.remove('off')
+    modal.classList.add('off')
+}
+confirmButton.addEventListener('click', confirm)
+    
 // 👉 TASK 5- Create a function to cancel the launch.
 // It should close the modal and display a failure report.
 // Add it as a listener for clicks on the cancellation button.
-
+function cancel(event) {
+    failureMessage.classList.remove('off')
+    modal.classList.add('off')
+}
+cancelButton.addEventListener('click', cancel)
 
 // 👉 TASK 6- Create a function that closes the modal if
 // the user hits the Escape key on their keyboard.
