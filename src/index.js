@@ -31,6 +31,8 @@ launchButton.addEventListener ('click', function(event){
 // Add it as an event listener for click events on the launch button.
 function launch(event) {
     modal.classList.remove('off')
+    successMessage.classList.add('off')
+    failureMessage.classList.add('off')
 }
 launchButton.addEventListener('click', launch)
 // 👉 TASK 4- Create a function to confirm the launch.
@@ -54,13 +56,27 @@ cancelButton.addEventListener('click', cancel)
 // 👉 TASK 6- Create a function that closes the modal if
 // the user hits the Escape key on their keyboard.
 // Add it as an event listener for 'keydown' events on document.
-
+function escapeKey(event){
+    if (event.key === 'Escape'){
+        modal.classList.add('off')
+    }
+}
+document.addEventListener('keydown', escapeKey)
 
 // 👉 TASK 7- Add to ALL ELEMENTS ON THE PAGE an event listener for click events.
 // It should console.log the target 🎯 of the event.
 // It should also console.log the CURRENT target 🧭 of the event.
 // Play with stopPropagation and stopImmediatePropagation.
-
+Array.from(document.links).forEach(link => {
+    link.addEventListener('click', function(event) {
+        event.preventDefault()
+    })
+})
+    
+modal.addEventListener('click', function(event) {
+    console.log('Look, no more propogation')
+    event.stopPropagation()
+})
 
 // 👉 TASK 8- [STRETCH] Create helper functions to make the code
 // more readable in tasks 3, 4, 5, 6
